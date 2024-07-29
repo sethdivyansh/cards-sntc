@@ -18,7 +18,7 @@ const CopsCard = () => {
           Club of Programmers (COPS) promotes coding through workshops, competitions, and events like Technex, with specialized groups and mentorship for all programmers.
         </p>
         <div className='flex justify-center align-middle'>
-          <button className="bg-gray-800 rounded-3xl text-white flex justify-center align-middle p-2 my-3 w-1/2"><FaWhatsapp size={24}/>WhatsApp</button>
+          <button className="bg-gray-800 rounded-3xl text-white flex justify-center align-middle p-2 my-3 w-1/2 font-semibold"><FaWhatsapp size={24} className='mr-2'/>WhatsApp</button>
         </div>
         <div className="flex justify-center space-x-4 mt-1">
           <a href="https://twitter.com" className="text-gray-600 hover:text-gray-900"><FaTwitter size={24} /></a>
