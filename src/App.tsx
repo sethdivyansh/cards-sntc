@@ -4,7 +4,7 @@ import cops from './assets/cops.png';
 
 function App() {
   return (
-    <div className='grid grid-cols-1 gap-5 bg-slate-700 p-5'>
+    <div className='grid grid-cols-1 gap-5 bg-slate-700 p-5 md:grid-cols-2 lg:grid-cols-4'>
       <CopsCard
         mainImage={cops}
         clubName='Club Of Programmers'
