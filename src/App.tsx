@@ -1,6 +1,14 @@
 import './App.css';
 import CopsCard from './components/cops';
-import cops from './assets/cops.png';
+import cops from './assets/cops.svg';
+import aero from './assets/aero.svg';
+import tqc from './assets/tqc.svg';
+import robotics from './assets/robotics.svg';
+import csi from './assets/csi.svg';
+import bizclub from './assets/bizclub.svg';
+import astro from './assets/astro.svg';
+
+
 
 function App() {
   return (
@@ -15,7 +23,7 @@ function App() {
         instaLink='https://www.instagram.com/cops.iitbhu?igsh=MXRvdjBpMWRkdmRkeA=='
       />
       <CopsCard
-        mainImage={cops}
+        mainImage={tqc}
         clubName='The Quant Club'
         content="The Quant Club at IIT (BHU), Varanasi, promotes quantitative finance and analytics through workshops, seminars, competitions, and projects. We offer learning, networking, and hands-on experience in algorithmic trading, risk management, and data analytics. Join us to excel in this field."
         color='purple'
@@ -24,7 +32,7 @@ function App() {
         instaLink='https://www.instagram.com/quantclub.iitbhu?igsh=eDIzaWd2YzM0dWpi'
       />
       <CopsCard
-        mainImage={cops}
+        mainImage={robotics}
         clubName='Robotics Club'
         content="Our Robotics Club at IIT BHU empowers students with essential skills in robotics through hands-on projects, workshops, guest lectures, and competitions. Whether you're a beginner or expert, join us to learn, grow, and launch a successful robotics career."
         color='skyBlue'
@@ -33,7 +41,7 @@ function App() {
         instaLink='https://www.instagram.com/robotics_club.iitbhu?igsh=MXFhYTdtZms0MnZscQ=='
       />
       <CopsCard
-        mainImage={cops}
+        mainImage={robotics}
         clubName='Society of Automotive Engineers'
         content="The Society of Automotive Engineering at IIT (BHU) explores cutting-edge automotive technologies. We focus on science, engineering, and design, from conventional to electric and autonomous systems. Join us for workshops, seminars, and projects to innovate in automotive technology and drive mobility's future."
         color='red'
@@ -42,7 +50,7 @@ function App() {
         instaLink='https://www.instagram.com/saecollegiateclubiitbhu?igsh=MXMzYjNzNWd0ZG5oZw=='
       />
       <CopsCard
-        mainImage={cops}
+        mainImage={aero}
         clubName='Aero-Modelling Club'
         content="The Aeromodelling Club at IIT (BHU) fosters creativity and innovation in aviation. We provide hands-on experience in designing, building, and flying model aircraft through workshops, competitions, and demonstrations. Join us to explore remote-controlled planes, drones, and rocketry, and soar to new heights."
         color='red'
@@ -51,7 +59,7 @@ function App() {
         instaLink='https://www.instagram.com/amc.iitbhu?igsh=aTJsdDR2YzkxcXJt'
       />
       <CopsCard
-        mainImage={cops}
+        mainImage={csi}
         clubName='Club of Sustainability and Innovation'
         content="The Club Of Sustainability and Innovation at IIT (BHU) drives positive change through sustainable practices and innovative solutions. We raise awareness and implement projects in environmental conservation, social responsibility, and technology. Join us to turn ideas into action and create a greener future."
         color='orange'
@@ -60,7 +68,7 @@ function App() {
         instaLink='https://www.instagram.com/csi_iitbhu?igsh=MXBnYWxmdnlzenZ2dQ=='
       />
       <CopsCard
-        mainImage={cops}
+        mainImage={bizclub}
         clubName='The Business Club'
         content="Join the Business Club at IIT BHU to gain essential skills for success in the business world. We offer guest lectures, hands-on projects, and workshops to enhance your understanding of business and prepare you for a competitive global marketplace."
         color='blue'
@@ -69,7 +77,7 @@ function App() {
         instaLink='https://www.instagram.com/businessclub_iitbhu?igsh=Mmg3eGZldW1ia2Rs'
       />
       <CopsCard
-        mainImage={cops}
+        mainImage={astro}
         clubName='Astronomy Club'
         content="The Astronomy Club at IIT (BHU) explores the cosmos through stargazing, workshops, and outreach. We ignite curiosity and inspire awe about celestial phenomena, astrophotography, and space exploration. Join us to witness cosmic events and deepen your understanding of the universe."
         color='red'
