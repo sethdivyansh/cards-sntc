@@ -191,9 +191,6 @@ function App() {
             <UserButton />
           </div>
           <div className='flex flex-col items-center mt-16 w-[90vw] max-w-[600px] h-[80vh]'>
-            {/* <h1 className='text-3xl font-bold text-white bg-clip-text text-transparent p-2'>
-              SNTC Induction 2024
-            </h1> */}
             <div className='relative w-full h-full flex items-center justify-center'>
               {db.map((club, index) => (
                 <TinderCard
