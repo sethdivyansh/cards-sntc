@@ -50,7 +50,7 @@ const db: Club[] = [
     content:
       "COPS at IIT (BHU), Varanasi, fosters programming excellence through workshops, competitions, hackathons, and projects. We empower members with skills and knowledge, nurturing creativity and problem-solving. Join us to grow, connect, and excel in technology.",
     color: "black",
-    whatsappLink: "",
+    whatsappLink: "https://chat.whatsapp.com/CF854bvOCpAEp3elZi8sOV",
     linkedinLink: "https://www.linkedin.com/company/cops-iitbhu/",
     instaLink:
       "https://www.instagram.com/cops.iitbhu?igsh=MXRvdjBpMWRkdmRkeA==",
