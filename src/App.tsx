@@ -165,7 +165,7 @@ function App() {
   //   if (canSwipe && currentIndex >= 0) {
   //     await childRefs[currentIndex].current?.swipe(dir);
   //   }
-  // };
+  // }
 
   const goBack = () => {
     if (!canGoBack) return
