@@ -70,7 +70,7 @@ const CopsCard: React.FC<CopsCardProps> = ({
           onClick={() => window.location.href = whatsappLink}
         >
           <FaWhatsapp size={24} className='mr-2' />
-          WhatsApp
+          <div>WhatsApp</div>
         </div>
       </div>
       <div className='flex justify-center space-x-4 mt-1'>
