@@ -1,5 +1,4 @@
-import React, { useState, useRef, useMemo, RefObject, useEffect } from 'react'
-// import { Link } from 'react-router-dom'
+import React, { useState, useRef, useMemo, RefObject } from 'react'
 import TinderCard from 'react-tinder-card'
 import CopsCard from './components/cops'
 import cops from './assets/cops.svg'
@@ -136,8 +135,8 @@ const db: Club[] = [
 ]
 
 function App() {
-  const [currentIndex, setCurrentIndex] = useState<number>(db.length - 1);
-  const currentIndexRef = useRef<number>(currentIndex);
+  const [currentIndex, setCurrentIndex] = useState<number>(db.length - 1)
+  const currentIndexRef = useRef<number>(currentIndex)
 
   const childRefs: RefObject<TinderCardAPI>[] = useMemo(
     () =>
@@ -145,62 +144,65 @@ function App() {
         .fill(null)
         .map(() => React.createRef<TinderCardAPI>()),
     []
-  );
+  )
 
   const updateCurrentIndex = (val: number) => {
-    setCurrentIndex(val);
-    currentIndexRef.current = val;
-  };
+    setCurrentIndex(val)
+    currentIndexRef.current = val
+  }
 
-  const canGoBack = currentIndex < db.length - 1;
+  const canGoBack = currentIndex < db.length - 1
 
   const swiped = (index: number) => {
-    updateCurrentIndex(index - 1);
-  };
+    updateCurrentIndex(index - 1)
+  }
 
   const outOfFrame = (idx: number) => {
     if (currentIndexRef.current >= idx) {
-      childRefs[idx].current?.restoreCard();
+      childRefs[idx].current?.restoreCard()
     }
-  };
+  }
 
   const goBack = async () => {
-    if (!canGoBack) return;
-    const newIndex = currentIndex + 1;
-    updateCurrentIndex(newIndex);
-    await childRefs[newIndex].current?.restoreCard();
-  };
+    if (!canGoBack) return
+    const newIndex = currentIndex + 1
+    updateCurrentIndex(newIndex)
+    await childRefs[newIndex].current?.restoreCard()
+  }
 
   function getCookie(name: string): string | null {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
+    const value = `; ${document.cookie}`
+    const parts = value.split(`; ${name}=`)
     if (parts.length === 2) {
-      return parts.pop()?.split(';').shift() || null;
+      return parts.pop()?.split(';').shift() || null
     }
-    return null;
+    return null
   }
-  
+
   function sendRequest() {
-    const sessionCookie = getCookie('__session'); // Get session cookie
+    const sessionCookie = getCookie('__session') // Get session cookie
     if (!sessionCookie) {
-      console.error('Session cookie is null');
-      return;
+      console.error('Session cookie is null')
+      return
     }
-    fetch('https://sntc-induction-server.cynikal.workers.dev/api/v1/users/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${sessionCookie}`,
-      },
-    })
+    fetch(
+      'https://sntc-induction-server.cynikal.workers.dev/api/v1/users/signup',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${sessionCookie}`,
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => console.log('Success:', data))
-      .catch((error) => console.error('Error:', error));
+      .catch((error) => console.error('Error:', error))
   }
-  
+
   useEffect(() => {
-    sendRequest();
-  }, []);
+    sendRequest()
+  }, [])
 
   return (
     <>
@@ -257,7 +259,7 @@ function App() {
         </div>
       </SignedIn>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
