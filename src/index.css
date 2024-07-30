@@ -1,3 +1,17 @@
+/* index.css or global.css */
+
+/* Tailwind's base, components, and utilities will be included here */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Add custom global styles here */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent overflow */
+}
+
+#root {
+  height: 100vh; /* Ensure root takes full viewport height */
+}

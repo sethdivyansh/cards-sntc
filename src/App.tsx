@@ -10,7 +10,7 @@ import bizclub from './assets/bizclub.svg';
 import astro from './assets/astro.svg';
 import sae from './assets/sae.svg';
 import { FaUndo } from 'react-icons/fa';
-import './App.css';
+import './index.css'
 
 type Color =
   | 'black'
@@ -170,39 +170,44 @@ function App() {
   };
 
   return (
-    <div className='cards-container'>
+    <div className="flex justify-center items-start w-screen h-screen bg-black">
       <link
         href='https://fonts.googleapis.com/css?family=Damion&display=swap'
         rel='stylesheet'
       />
-      <div className='mb-8'>
-        <h1 className='welcome-text'>Welcome TO IITBHU</h1>
-      </div>
-      <div className='cardContainer'>
-        {db.map((club, index) => (
-          <TinderCard
-            ref={childRefs[index]}
-            className={`swipe ${index === currentIndex ? 'active-card' : ''}`}
-            key={club.clubName}
-            onSwipe={(dir) => swiped(dir as Direction, index)}
-            onCardLeftScreen={() => outOfFrame(index)}
+      <div className="relative w-[90vw] max-w-[600px] h-[80vh] flex flex-col items-center justify-center mt-10">
+        <h1 className="text-3xl font-bold text-white mb-8 bg-gradient-to-r from-white via-gray-300 to-gray-200 bg-clip-text text-transparent p-2">
+          Welcome TO IITBHU
+        </h1>
+        <div className="relative w-full h-full flex items-center justify-center">
+          {db.map((club, index) => (
+            <TinderCard
+              ref={childRefs[index]}
+              className={`absolute w-full h-full flex items-center justify-center transition-transform duration-100 ${index === currentIndex ? 'z-10' : ''}`}
+              key={club.clubName}
+              onSwipe={(dir) => swiped(dir as Direction, index)}
+              onCardLeftScreen={() => outOfFrame(index)}
+            >
+              <CopsCard
+                mainImage={club.mainImage}
+                clubName={club.clubName}
+                content={club.content}
+                color={club.color}
+                whatsappLink={club.whatsappLink}
+                linkedinLink={club.linkedinLink}
+                instaLink={club.instaLink}
+              />
+            </TinderCard>
+          ))}
+        </div>
+        <div className="fixed bottom-5 w-full flex justify-center">
+          <button
+            onClick={() => goBack()}
+            className="bg-gradient-to-r from-pink-300 via-pink-200 to-orange-300 rounded-full p-3 shadow-lg hover:scale-110 transition-transform duration-300 ease-in-out hover:shadow-xl active:bg-white flex items-center justify-center w-15 h-15"
           >
-            <CopsCard
-              mainImage={club.mainImage}
-              clubName={club.clubName}
-              content={club.content}
-              color={club.color}
-              whatsappLink={club.whatsappLink}
-              linkedinLink={club.linkedinLink}
-              instaLink={club.instaLink}
-            />
-          </TinderCard>
-        ))}
-      </div>
-      <div className='buttons'>
-        <button onClick={() => goBack()} className='undo-button'>
-          <FaUndo size={20} />
-        </button>
+            <FaUndo size={20} />
+          </button>
+        </div>
       </div>
     </div>
   );
