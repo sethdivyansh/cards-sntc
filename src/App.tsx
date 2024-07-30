@@ -214,7 +214,7 @@ function App() {
                 </TinderCard>
               ))}
             </div>
-            <div className='fixed bottom-5 w-full flex justify-center'>
+            <div className='relative w-full flex justify-center z-50'>
               <button
                 onClick={() => goBack()}
                 className='bg-gradient-to-r from-pink-300 via-pink-200 to-orange-300 rounded-full p-3 shadow-lg hover:scale-110 transition-transform duration-300 ease-in-out hover:shadow-xl active:bg-white flex items-center justify-center w-15 h-15'
