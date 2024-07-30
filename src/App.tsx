@@ -154,9 +154,8 @@ function App() {
 
   const canGoBack = currentIndex < db.length - 1
 
-  const swiped = (direction: Direction, index: number) => {
+  const swiped = (index: number) => {
     updateCurrentIndex(index - 1)
-    console.log('Swiped: ', direction, index)
   }
 
   const outOfFrame = (idx: number) => {
@@ -195,11 +194,11 @@ function App() {
               {db.map((club, index) => (
                 <TinderCard
                   ref={childRefs[index]}
-                  className={`absolute w-full h-full flex items-center justify-center transition-transform duration-100 ${
+                  className={`absolute w-full h-full flex items-center justify-center ${
                     index === currentIndex ? 'z-10' : ''
                   }`}
                   key={club.clubName}
-                  onSwipe={(dir) => swiped(dir as Direction, index)}
+                  onSwipe={() => swiped(index)}
                   onCardLeftScreen={() => outOfFrame(index)}
                   swipeThreshold={1}
                 >
