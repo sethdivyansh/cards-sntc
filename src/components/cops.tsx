@@ -65,13 +65,13 @@ const CopsCard: React.FC<CopsCardProps> = ({
       <h1 className={`text-2xl font-bold mb-4 text-${color}`}>{clubName}</h1>
       <p className='text-gray-700 mb-4 text-sm'>{content}</p>
       <div className='flex justify-center align-middle'>
-        <button
-          className={`${colorVariantsWhatsapp[color]} rounded-3xl text-white flex justify-center align-middle p-2 my-3 w-1/2 font-semibold shadow-md transition-transform transform hover:scale-105`}
+        <div
+          className={`${colorVariantsWhatsapp[color]} rounded-3xl text-white flex justify-center align-middle p-2 my-3 w-1/2 font-semibold shadow-md transition-transform transform hover:scale-105 cursor-pointer`}
           onClick={() => window.open(whatsappLink, '_blank')}
         >
           <FaWhatsapp size={24} className='mr-2' />
           WhatsApp
-        </button>
+        </div>
       </div>
       <div className='flex justify-center space-x-4 mt-1'>
         <a
