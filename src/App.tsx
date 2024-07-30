@@ -1,16 +1,16 @@
-import React, { useState, useRef, useMemo, RefObject } from 'react'
-import TinderCard from 'react-tinder-card'
-import CopsCard from './components/cops'
-import cops from './assets/cops.svg'
-import aero from './assets/aero.svg'
-import tqc from './assets/tqc.svg'
-import robotics from './assets/robotics.svg'
-import csi from './assets/csi.svg'
-import bizclub from './assets/bizclub.svg'
-import astro from './assets/astro.svg'
-import sae from './assets/sae.svg'
-import { FaUndo } from 'react-icons/fa'
-import './App.css'
+import React, { useState, useRef, useMemo, RefObject } from 'react';
+import TinderCard from 'react-tinder-card';
+import CopsCard from './components/cops';
+import cops from './assets/cops.svg';
+import aero from './assets/aero.svg';
+import tqc from './assets/tqc.svg';
+import robotics from './assets/robotics.svg';
+import csi from './assets/csi.svg';
+import bizclub from './assets/bizclub.svg';
+import astro from './assets/astro.svg';
+import sae from './assets/sae.svg';
+import { FaUndo } from 'react-icons/fa';
+import './App.css';
 
 type Color =
   | 'black'
@@ -22,21 +22,23 @@ type Color =
   | 'lightPurple'
   | 'lightRed'
   | 'darkPurple'
-  | 'darkRed'
+  | 'darkRed';
 
 interface Club {
-  mainImage: string
-  clubName: string
-  content: string
-  color: Color
-  whatsappLink: string
-  linkedinLink: string
-  instaLink: string
+  mainImage: string;
+  clubName: string;
+  content: string;
+  color: Color;
+  whatsappLink: string;
+  linkedinLink: string;
+  instaLink: string;
 }
 
+type Direction = 'left' | 'right' | 'up' | 'down';
+
 interface TinderCardAPI {
-  swipe: (direction: string) => void
-  restoreCard: () => void
+  swipe: (dir: Direction) => Promise<void>;
+  restoreCard: () => Promise<void>;
 }
 
 const db: Club[] = [
@@ -128,11 +130,11 @@ const db: Club[] = [
     instaLink:
       'https://www.instagram.com/saecollegiateclubiitbhu?igsh=MXMzYjNzNWd0ZG5oZw==',
   },
-]
+];
 
 function App() {
-  const [currentIndex, setCurrentIndex] = useState<number>(db.length - 1)
-  const currentIndexRef = useRef<number>(currentIndex)
+  const [currentIndex, setCurrentIndex] = useState<number>(db.length - 1);
+  const currentIndexRef = useRef<number>(currentIndex);
 
   const childRefs: RefObject<TinderCardAPI>[] = useMemo(
     () =>
@@ -140,39 +142,32 @@ function App() {
         .fill(null)
         .map(() => React.createRef<TinderCardAPI>()),
     [db.length]
-  )
+  );
 
   const updateCurrentIndex = (val: number) => {
-    setCurrentIndex(val)
-    currentIndexRef.current = val
-  }
+    setCurrentIndex(val);
+    currentIndexRef.current = val;
+  };
 
-  const canGoBack = currentIndex < db.length - 1
-  // const canSwipe = currentIndex >= 0;
+  const canGoBack = currentIndex < db.length - 1;
 
-  const swiped = (direction: string, index: number) => {
-    updateCurrentIndex(index - 1)
-    console.log('Swiped: ', direction, index)
-  }
+  const swiped = (direction: Direction, index: number) => {
+    updateCurrentIndex(index - 1);
+    console.log('Swiped: ', direction, index);
+  };
 
   const outOfFrame = (idx: number) => {
     if (currentIndexRef.current >= idx) {
-      childRefs[idx].current?.restoreCard()
+      childRefs[idx].current?.restoreCard();
     }
-  }
+  };
 
-  // const swipe = async (dir: string) => {
-  //   if (canSwipe && currentIndex >= 0) {
-  //     await childRefs[currentIndex].current?.swipe(dir);
-  //   }
-  // }
-
-  const goBack = () => {
-    if (!canGoBack) return
-    const newIndex = currentIndex + 1
-    updateCurrentIndex(newIndex)
-    childRefs[newIndex].current?.restoreCard()
-  }
+  const goBack = async () => {
+    if (!canGoBack) return;
+    const newIndex = currentIndex + 1;
+    updateCurrentIndex(newIndex);
+    await childRefs[newIndex].current?.restoreCard();
+  };
 
   return (
     <div className='cards-container'>
@@ -189,7 +184,7 @@ function App() {
             ref={childRefs[index]}
             className={`swipe ${index === currentIndex ? 'active-card' : ''}`}
             key={club.clubName}
-            onSwipe={(dir) => swiped(dir, index)}
+            onSwipe={(dir) => swiped(dir as Direction, index)}
             onCardLeftScreen={() => outOfFrame(index)}
           >
             <CopsCard
@@ -210,7 +205,7 @@ function App() {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
