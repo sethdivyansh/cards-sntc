@@ -68,7 +68,7 @@ const CopsCard: React.FC<CopsCardProps> = ({
       </div>
       <h1 className={`text-2xl font-bold mb-4 text-${color}`}>{clubName}</h1>
       <p className='text-gray-700 mb-4 text-sm'>{content}</p>
-      <div className='flex justify-center align-middle'>
+      <div className='flex justify-center align-middle w-full'>
         <a
           className={`${colorVariantsWhatsapp[color]} pressable rounded-3xl text-white flex justify-center items-center p-2 my-3 w-1/2 font-semibold shadow-md transform hover:scale-105 cursor-pointer transition-all`}
           href={whatsappLink}
