@@ -199,6 +199,7 @@ function App() {
                   key={club.clubName}
                   onSwipe={(dir) => swiped(dir as Direction, index)}
                   onCardLeftScreen={() => outOfFrame(index)}
+                  swipeThreshold={1}
                 >
                   <CopsCard
                     mainImage={club.mainImage}
