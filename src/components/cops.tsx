@@ -1,4 +1,6 @@
 import React from 'react'
+import sntc from '../assets/sntc.png'
+
 import {
   FaInstagram,
   FaLinkedin,
@@ -9,7 +11,7 @@ import {
 
 const colorVariants = {
   black: 'text-[#1F2C33] hover:text-gray-900',
-  blue: 'text-blue-800 hover:text-blue-900',
+  blue: 'text-[#053549] hover:text-blue-900',
   orange: 'text-[#FF5A1F] hover:text-orange-700',
   purple: 'text-[#5A0096] hover:text-purple-700',
   red: 'text-[#D23337] hover:text-red-800',
@@ -22,7 +24,7 @@ const colorVariants = {
 
 const colorVariantsWhatsapp = {
   black: 'bg-[#1F2C33] active:bg-gray-900',
-  blue: 'bg-blue-800 active:bg-blue-900',
+  blue: 'bg-[#053549] active:bg-blue-900',
   orange: 'bg-[#FF5A1F] active:bg-orange-700',
   purple: 'bg-[#5A0096] active:bg-purple-700',
   red: 'bg-[#D23337] active:bg-red-800',
@@ -53,26 +55,14 @@ const CopsCard: React.FC<CopsCardProps> = ({
   linkedinLink,
 }) => {
   return (
-    <div
-      className={`bg-white p-8 rounded-3xl shadow-lg text-center flex flex-col justify-center align-middle border border-gray-300`}
-    >
-      <div className='flex justify-start mb-4'>
-        <img
-          src={mainImage}
-          alt='Club Image'
-          className='rounded-full w-10 h-10 object-cover border border-gray-300'
-        />
+    <div className='bg-white pt-4 pl-4 pb-8 pr-4 rounded-3xl shadow-lg text-center flex flex-col justify-center align-middle'>
+      <div className='flex justify-start'>
+        <img src={sntc} alt='SNTC Image' className='rounded-full w-10' />
       </div>
-      <div className='flex justify-center mb-4'>
-        <img
-          src={mainImage}
-          alt='Club'
-          className='w-3/4 rounded-2xl border border-gray-300 shadow-lg'
-        />
+      <div className='flex justify-center mt-[-2rem] mb-[-0.5rem]'>
+        <img src={mainImage} alt='Club' className='w-[12rem] rounded-full' />
       </div>
-      <h1 className={`text-2xl font-bold mb-4 text-${color} shadow-sm`}>
-        {clubName}
-      </h1>
+      <h1 className={`text-2xl font-bold mb-4 text-${color}`}>{clubName}</h1>
       <p className='text-gray-700 mb-4 text-sm'>{content}</p>
       <div className='flex justify-center align-middle'>
         <button

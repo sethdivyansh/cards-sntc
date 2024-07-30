@@ -8,6 +8,7 @@ import robotics from './assets/robotics.svg'
 import csi from './assets/csi.svg'
 import bizclub from './assets/bizclub.svg'
 import astro from './assets/astro.svg'
+import sae from './assets/sae.svg'
 import { FaUndo } from 'react-icons/fa'
 import './App.css'
 
@@ -99,7 +100,7 @@ const db: Club[] = [
     clubName: 'The Business Club',
     content:
       'Join the Business Club at IIT BHU to gain essential skills for success in the business world. We offer guest lectures, hands-on projects, and workshops to enhance your understanding of business and prepare you for a competitive global marketplace.',
-    color: 'blue',
+    color: 'red',
     whatsappLink: 'https://chat.whatsapp.com/Iix3yxoYqUM0kMkQun9M4s',
     linkedinLink: 'https://www.linkedin.com/company/businessclubiitbhu/',
     instaLink:
@@ -110,10 +111,22 @@ const db: Club[] = [
     clubName: 'Astronomy Club',
     content:
       'The Astronomy Club at IIT (BHU) explores the cosmos through stargazing, workshops, and outreach. We ignite curiosity and inspire awe about celestial phenomena, astrophotography, and space exploration. Join us to witness cosmic events and deepen your understanding of the universe.',
-    color: 'red',
+    color: 'blue',
     whatsappLink: 'https://chat.whatsapp.com/KLyly1vfE0f8JUpg7lgSZb',
     linkedinLink: 'https://www.linkedin.com/company/astroiitbhu/',
     instaLink: 'https://www.instagram.com/astro.iitbhu?igsh=a2s0dGc5aG9naTh2',
+  },
+  {
+    mainImage: sae,
+    clubName: 'Society of Automotive Engineers',
+    content:
+      "The Society of Automotive Engineering at IIT (BHU) explores cutting-edge automotive technologies. We focus on science, engineering, and design, from conventional to electric and autonomous systems. Join us for workshops, seminars, and projects to innovate in automotive technology and drive mobility's future.",
+    color: 'red',
+    whatsappLink: 'https://chat.whatsapp.com/LKSYDe8W2jY3NFvChJq2ow',
+    linkedinLink:
+      'https://www.linkedin.com/company/sae-collegiate-club-iit-varanasi/',
+    instaLink:
+      'https://www.instagram.com/saecollegiateclubiitbhu?igsh=MXMzYjNzNWd0ZG5oZw==',
   },
 ]
 
