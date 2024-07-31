@@ -108,14 +108,14 @@ const SNTCComponent: React.FC<SNTCComponentProps> = ({
       <h1 className="text-xl font-bold mt-4 text-gray-800">
         {fullName || username}
       </h1>
-      <p className="text-gray-700 mt-2 mb-2 text-lg">
-        visited {visitedClubs.length} SNTC clubs
+      <p className="text-gray-700 mt-2 mb-2 text-lg font-medium">
+        Visited {visitedClubs.length} SNTC Clubs
       </p>
       <div className="flex flex-wrap justify-center mb-4 gap-2">
         {visitedClubs.map((club, index) => (
           <div
             key={index}
-            className="w-6 h-6 sm:w-8 sm:h-8 rounded-full overflow-hidden"
+            className="w-8 h-10 sm:w-8 sm:h-10 rounded-full overflow-hidden"
           >
             <img
               src={clubImages[club]}
@@ -125,7 +125,7 @@ const SNTCComponent: React.FC<SNTCComponentProps> = ({
           </div>
         ))}
       </div>
-      <p className="text-gray-700 mb-2 text-sm px-2 sm:px-4">{content}</p>
+      <p className="text-gray-700 mt-[-0.5rem] mb-4 text-sm px-4 sm:px-4">{content}</p>
     </div>
   );
 };
