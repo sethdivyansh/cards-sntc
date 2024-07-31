@@ -38,7 +38,7 @@ const Card: React.FC = () => {
 };
 
 const SNTCComponent: React.FC<SNTCComponentProps> = ({
-  username = "Aayush Khanna",
+  username = "username",
   sntcImage = sntcBanner,
   mainImage = defaultUser,
   content = "The Science and Technology Council, IIT (BHU) is excited to have you join us. We look forward to supporting you as you start this incredible journey. Embrace every opportunity, and let’s make this a fantastic experience together!",
@@ -105,7 +105,9 @@ const SNTCComponent: React.FC<SNTCComponentProps> = ({
           />
         </div>
       </div>
-      <h1 className="text-xl font-bold mt-4 text-gray-800">{fullName}</h1>
+      <h1 className="text-xl font-bold mt-4 text-gray-800">
+        {fullName || username}
+      </h1>
       <p className="text-gray-700 mt-2 mb-2 text-lg">
         visited {visitedClubs.length} SNTC clubs
       </p>
