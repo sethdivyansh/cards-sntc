@@ -7,7 +7,7 @@ import {
 import { SignedIn, SignedOut } from '@clerk/clerk-react'
 import SignInPage from './components/signIn'
 import App from './App'
-
+import Card from './components/finalcard'
 function AppRoutes() {
   return (
     <Router>
@@ -18,6 +18,7 @@ function AppRoutes() {
         <Routes>
           <Route path='/' element={<App />} />
           <Route path='/*' element={<Navigate to='/' />} />
+          <Route path='/final' element={<Card/>}/>
         </Routes>
       </SignedIn>
     </Router>
