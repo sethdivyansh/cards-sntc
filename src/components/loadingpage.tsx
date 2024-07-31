@@ -44,19 +44,28 @@ export default function LoadingPage() {
         if (!sessionCookie) {
             console.error('Session cookie is null')
             return
-    }
-    fetch(
-        `https://sntc-induction-server.cynikal.workers.dev/api/v1/clubs/${club}`,
-        {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${sessionCookie}`,
-        },
         }
-    )
+        fetch(
+            `https://sntc-induction-server.cynikal.workers.dev/api/v1/clubs/${club}`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${sessionCookie}`,
+                },
+            }
+        )
         .then((response) => response.json())
-        .then((data) => {console.log('Success:', data),nav('/')})
+        .then((data) => {
+            if (data.updatedUser && data.updatedUser[0]) {
+                console.log(data.updatedUser[0]);
+                console.log('Success:', data);
+                nav('/');
+            } else {
+                console.log('Success:', data);
+                nav('/');
+            }
+        })
         .catch((error) => console.error('Error:', error))
     }
 
