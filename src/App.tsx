@@ -12,6 +12,7 @@ import sae from './assets/sae.svg'
 import { FaUndo } from 'react-icons/fa'
 import './index.css'
 import { UserButton } from '@clerk/clerk-react'
+import { useNavigate } from 'react-router-dom'
 
 type Color =
   | 'black'
@@ -138,6 +139,7 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState<number>(db.length - 1)
   const currentIndexRef = useRef<number>(currentIndex)
 
+  const navigate = useNavigate();
   const childRefs: RefObject<TinderCardAPI>[] = useMemo(
     () =>
       Array(db.length)
@@ -257,9 +259,15 @@ function App() {
           <div className='relative w-full flex justify-center z-50'>
             <button
               onClick={() => goBack()}
-              className='bg-gradient-to-r from-pink-300 via-pink-200 to-orange-300 rounded-full p-3 shadow-lg hover:scale-110 transition-transform duration-300 ease-in-out hover:shadow-xl active:bg-white flex items-center justify-center w-15 h-15'
+              className='bg-gradient-to-r mx-2 mt-2 from-pink-300 via-pink-200 to-orange-300 rounded-full p-3 shadow-lg hover:scale-110 transition-transform duration-300 ease-in-out hover:shadow-xl active:bg-white flex items-center justify-center w-15 h-15'
             >
               <FaUndo size={20} />
+            </button>
+            <button
+              onClick={() => navigate("/final")}
+              className='bg-gradient-to-r mx-2 mt-2 from-pink-300 via-pink-200 to-orange-300 rounded-full p-3 shadow-lg hover:scale-110 transition-transform duration-300 ease-in-out hover:shadow-xl active:bg-white flex items-center justify-center w-15 h-15'
+            >
+              Check Progress..
             </button>
           </div>
         </div>

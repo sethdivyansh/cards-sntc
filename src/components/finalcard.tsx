@@ -10,6 +10,7 @@ import astro from "../assets/astro.svg";
 import sae from "../assets/sae.svg";
 import { useEffect, useState } from "react";
 import { useClerk } from "@clerk/clerk-react";
+import { useNavigate } from "react-router-dom";
 
 interface SNTCComponentProps {
   username?: string;
@@ -43,6 +44,7 @@ const SNTCComponent: React.FC<SNTCComponentProps> = ({
   mainImage = defaultUser,
   content = "The Science and Technology Council, IIT (BHU) is excited to have you join us. We look forward to supporting you as you start this incredible journey. Embrace every opportunity, and let’s make this a fantastic experience together!",
 }) => {
+  const navigate = useNavigate();
   const [visitedClubs, setVisitedClubs] = useState<string[]>([]);
 
   const clerk = useClerk();
@@ -89,43 +91,59 @@ const SNTCComponent: React.FC<SNTCComponentProps> = ({
   }, []);
 
   return (
-    <div
-      className="bg-white rounded-3xl text-center flex flex-col justify-center items-center w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-4"
-      style={{ boxShadow: "0 10px 20px rgba(128, 0, 128, 0.5)" }} // Uniform shadow all around
-    >
-      <div className="flex justify-center w-full">
-        <img src={sntcImage} alt="SNTC Logo" className="w-full rounded-t-3xl" />
-      </div>
-      <div className="flex justify-center mt-[-4rem]">
-        <div className="bg-gray-300 w-32 h-32 sm:w-40 sm:h-40 rounded-full flex justify-center items-center">
+    <div>
+      <div
+        className="bg-white rounded-3xl text-center flex flex-col justify-center items-center w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-4"
+        style={{ boxShadow: "0 10px 20px rgba(128, 0, 128, 0.5)" }} // Uniform shadow all around
+      >
+        <div className="flex justify-center w-full">
           <img
-            src={imageUrl || mainImage}
-            alt="User Avatar"
-            className="w-full h-full rounded-full"
+            src={sntcImage}
+            alt="SNTC Logo"
+            className="w-full rounded-t-3xl"
           />
         </div>
-      </div>
-      <h1 className="text-xl font-bold mt-4 text-gray-800">
-        {fullName || username}
-      </h1>
-      <p className="text-gray-700 mt-2 mb-2 text-lg font-medium">
-        Visited {visitedClubs.length} SNTC Clubs
-      </p>
-      <div className="flex flex-wrap justify-center mb-4 gap-2">
-        {visitedClubs.map((club, index) => (
-          <div
-            key={index}
-            className="w-8 h-10 sm:w-8 sm:h-10 rounded-full overflow-hidden"
-          >
+        <div className="flex justify-center mt-[-4rem]">
+          <div className="bg-gray-300 w-32 h-32 sm:w-40 sm:h-40 rounded-full flex justify-center items-center">
             <img
-              src={clubImages[club]}
-              alt={`Club Image ${index + 1}`}
-              className="w-full h-full object-cover"
+              src={imageUrl || mainImage}
+              alt="User Avatar"
+              className="w-full h-full rounded-full"
             />
           </div>
-        ))}
+        </div>
+        <h1 className="text-xl font-bold mt-4 text-gray-800">
+          {fullName || username}
+        </h1>
+        <p className="text-gray-700 mt-2 mb-2 text-lg font-medium">
+          Visited {visitedClubs.length} SNTC Clubs
+        </p>
+        <div className="flex flex-wrap justify-center mb-4 gap-2">
+          {visitedClubs.map((club, index) => (
+            <div
+              key={index}
+              className="w-8 h-10 sm:w-8 sm:h-10 rounded-full overflow-hidden"
+            >
+              <img
+                src={clubImages[club]}
+                alt={`Club Image ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
+        <p className="text-gray-700 mt-[-0.5rem] mb-4 text-sm px-4 sm:px-4">
+          {content}
+        </p>
       </div>
-      <p className="text-gray-700 mt-[-0.5rem] mb-4 text-sm px-4 sm:px-4">{content}</p>
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={() => navigate("/")}
+          className="bg-gradient-to-r mx-2 mt-2 from-pink-300 via-pink-200 to-orange-300 rounded-full p-3 shadow-lg hover:scale-110 transition-transform duration-300 ease-in-out hover:shadow-xl active:bg-white flex items-center justify-center w-15 h-15"
+        >
+          Back to Home
+        </button>
+      </div>
     </div>
   );
 };
