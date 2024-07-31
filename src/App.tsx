@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo, RefObject } from 'react'
+import React, { useState, useRef, useMemo, RefObject,useEffect } from 'react'
 import TinderCard from 'react-tinder-card'
 import CopsCard from './components/cops'
 import cops from './assets/cops.svg'
@@ -170,39 +170,39 @@ function App() {
     await childRefs[newIndex].current?.restoreCard()
   }
 
-  // function getCookie(name: string): string | null {
-  //   const value = `; ${document.cookie}`
-  //   const parts = value.split(`; ${name}=`)
-  //   if (parts.length === 2) {
-  //     return parts.pop()?.split(';').shift() || null
-  //   }
-  //   return null
-  // }
+  function getCookie(name: string): string | null {
+    const value = `; ${document.cookie}`
+    const parts = value.split(`; ${name}=`)
+    if (parts.length === 2) {
+      return parts.pop()?.split(';').shift() || null
+    }
+    return null
+  }
 
-  // function sendRequest() {
-  //   const sessionCookie = getCookie('__session') // Get session cookie
-  //   if (!sessionCookie) {
-  //     console.error('Session cookie is null')
-  //     return
-  //   }
-  //   fetch(
-  //     'https://sntc-induction-server.cynikal.workers.dev/api/v1/users/signup',
-  //     {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         Authorization: `Bearer ${sessionCookie}`,
-  //       },
-  //     }
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => console.log('Success:', data))
-  //     .catch((error) => console.error('Error:', error))
-  // }
+  function sendRequest() {
+    const sessionCookie = getCookie('__session') // Get session cookie
+    if (!sessionCookie) {
+      console.error('Session cookie is null')
+      return
+    }
+    fetch(
+      'https://sntc-induction-server.cynikal.workers.dev/api/v1/users/signup',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${sessionCookie}`,
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => console.log('Success:', data))
+      .catch((error) => console.error('Error:', error))
+  }
 
-  // useEffect(() => {
-  //   sendRequest()
-  // }, [])
+  useEffect(() => {
+    sendRequest()
+  }, [])
 
   return (
     <>
