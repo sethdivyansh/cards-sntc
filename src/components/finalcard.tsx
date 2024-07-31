@@ -1,37 +1,62 @@
-import sntcBanner from '../assets/sntc-banner.jpg'
-import defaultUser from '../assets/userdefault.jpg'
-import { useEffect, useState } from 'react'
+import sntcBanner from '../assets/sntc-banner.jpg';
+import defaultUser from '../assets/userdefault.jpg';
+import cops from '../assets/cops.svg';
+import aero from '../assets/aero.svg';
+import tqc from '../assets/tqc.svg';
+import robotics from '../assets/robotics.svg';
+import csi from '../assets/csi.svg';
+import bizclub from '../assets/bizclub.svg';
+import astro from '../assets/astro.svg';
+import sae from '../assets/sae.svg';
+import { useEffect, useState } from 'react';
 
-const Card = () => {
+interface SNTCComponentProps {
+  username?: string;
+  sntcImage?: string;
+  mainImage?: string;
+  content?: string;
+}
+
+const clubImages: Record<string, string> = {
+  COPS: cops,
+  SAE: sae,
+  astroClub: astro,
+  bizClub: bizclub,
+  csi: csi,
+  robotics: robotics,
+  theQuantClub: tqc,
+  AMC: aero,
+};
+
+const Card: React.FC = () => {
   return (
     <div className='grid lg:grid-cols-4 m-10 grid-cols-1 md:grid-cols-2'>
       <SNTCComponent />
     </div>
-  )
-}
+  );
+};
 
-const SNTCComponent = ({
+const SNTCComponent: React.FC<SNTCComponentProps> = ({
   username = 'Aayush Khanna',
   sntcImage = sntcBanner,
   mainImage = defaultUser,
   content = 'The Science and Technology Council, IIT (BHU) is excited to have you join us. We look forward to supporting you as you start this incredible journey. Embrace every opportunity, and let’s make this a fantastic experience together!'
 }) => {
-  const [visitedClubs, setVisitedClubs] = useState([])
+  const [visitedClubs, setVisitedClubs] = useState<string[]>([]);
 
   function getCookie(name: string): string | null {
-    const value = `; ${document.cookie}`
-    const parts = value.split(`; ${name}=`)
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
     if (parts.length === 2) {
-      return parts.pop()?.split(';').shift() || null
+      return parts.pop()?.split(';').shift() || null;
     }
-    return null
+    return null;
   }
 
   function sendRequest() {
-    const sessionCookie = getCookie('__session') // Get session cookie
+    const sessionCookie = getCookie('__session');
     if (!sessionCookie) {
-      console.error('Session cookie is null')
-      return
+      return;
     }
     fetch(
       `https://sntc-induction-server.cynikal.workers.dev/api/v1/clubs/final`,
@@ -45,15 +70,15 @@ const SNTCComponent = ({
     )
       .then((response) => response.json())
       .then((data) => {
-        setVisitedClubs(data.user ? Object.keys(data.user).filter(club => data.user[club] === true) : [])
-        console.log(visitedClubs,data)
+        const clubs = data.user ? Object.keys(data.user).filter(club => data.user[club] === true) : [];
+        setVisitedClubs(clubs);
       })
-      .catch((error) => console.error('Error:', error))
+      .catch((error) => console.error('Error:', error));
   }
 
   useEffect(() => {
-    sendRequest()
-  }, [])
+    sendRequest();
+  }, []);
 
   return (
     <div className='bg-white rounded-3xl shadow-xl text-center flex flex-col justify-center items-center'>
@@ -65,11 +90,18 @@ const SNTCComponent = ({
           <img src={mainImage} alt='User Avatar' className='w-full rounded-full' />
         </div>
       </div>
-      <h1 className={`text-xl font-bold mt-4 text-gray-800`}>{username}</h1>
-      <p className='text-gray-700 mt-2 mb-4 text-lg'>visited {visitedClubs.length} SNTC clubs</p>
+      <h1 className='text-xl font-bold mt-4 text-gray-800'>{username}</h1>
+      <p className='text-gray-700 mt-2 mb-2 text-lg'>visited {visitedClubs.length} SNTC clubs</p>
+      <div className='flex flex-wrap justify-center mb-4 gap-2'>
+        {visitedClubs.map((club, index) => (
+          <div key={index} className='w-8 h-8 rounded-full overflow-hidden'>
+            <img src={clubImages[club]} alt={`Club Image ${index + 1}`} className='w-full h-full object-cover' />
+          </div>
+        ))}
+      </div>
       <p className='text-gray-700 mb-2 text-sm px-4'>{content}</p>
     </div>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;
