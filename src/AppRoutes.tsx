@@ -4,10 +4,11 @@ import {
   Route,
   Navigate,
 } from 'react-router-dom'
-import { SignedIn, SignedOut } from '@clerk/clerk-react'
+import { SignedIn, SignedOut, UserProfile } from '@clerk/clerk-react'
 import SignInPage from './components/signIn'
 import App from './App'
 import Card from './components/finalcard'
+
 function AppRoutes() {
   return (
     <Router>
@@ -19,6 +20,7 @@ function AppRoutes() {
           <Route path='/' element={<App />} />
           <Route path='/*' element={<Navigate to='/' />} />
           <Route path='/final' element={<Card/>}/>
+          <Route path='/user-profile' element={<UserProfile/>}/>
         </Routes>
       </SignedIn>
     </Router>
