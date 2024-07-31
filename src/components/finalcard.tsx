@@ -8,6 +8,7 @@ import csi from '../assets/csi.svg';
 import bizclub from '../assets/bizclub.svg';
 import astro from '../assets/astro.svg';
 import sae from '../assets/sae.svg';
+import { useClerk } from '@clerk/clerk-react';
 import { useEffect, useState } from 'react';
 
 interface SNTCComponentProps {
@@ -37,11 +38,16 @@ const Card: React.FC = () => {
 };
 
 const SNTCComponent: React.FC<SNTCComponentProps> = ({
-  username = 'Aayush Khanna',
   sntcImage = sntcBanner,
   mainImage = defaultUser,
   content = 'The Science and Technology Council, IIT (BHU) is excited to have you join us. We look forward to supporting you as you start this incredible journey. Embrace every opportunity, and let’s make this a fantastic experience together!'
 }) => {
+
+  const clerk = useClerk();
+  const {user} = clerk;
+  const {fullName} = user;
+  const {imageUrl} = user
+  const imageSrc = imageUrl
   const [visitedClubs, setVisitedClubs] = useState<string[]>([]);
 
   function getCookie(name: string): string | null {
@@ -87,10 +93,10 @@ const SNTCComponent: React.FC<SNTCComponentProps> = ({
       </div>
       <div className='flex justify-center mt-[-4rem]'>
         <div className='bg-gray-300 w-40 h-40 rounded-full flex justify-center items-center'>
-          <img src={mainImage} alt='User Avatar' className='w-full rounded-full' />
+          <img src={imageSrc} alt='User Avatar' className='w-full rounded-full' />
         </div>
       </div>
-      <h1 className='text-xl font-bold mt-4 text-gray-800'>{username}</h1>
+      <h1 className='text-xl font-bold mt-4 text-gray-800'>{fullName}</h1>
       <p className='text-gray-700 mt-2 mb-2 text-lg'>visited {visitedClubs.length} SNTC clubs</p>
       <div className='flex flex-wrap justify-center mb-4 gap-2'>
         {visitedClubs.map((club, index) => (
