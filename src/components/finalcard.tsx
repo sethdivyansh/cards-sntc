@@ -34,7 +34,7 @@ const clubImages: Record<string, string> = {
 
 const Card: React.FC = () => {
   return (
-    <div className='flex items-center justify-center min-h-screen bg-black'>
+    <div className='flex items-center justify-center min-h-screen bg-black overflow-auto'>
       <SNTCComponent />
     </div>
   )
@@ -50,6 +50,8 @@ const SNTCComponent: React.FC<SNTCComponentProps> = ({
   const [visitedClubs, setVisitedClubs] = useState<string[]>([])
   const cardRef = useRef<HTMLDivElement>(null)
   const downloadButtonRef = useRef<HTMLButtonElement>(null)
+  const messageRef = useRef<HTMLParagraphElement>(null)
+  const homeButtonRef = useRef<HTMLButtonElement>(null)
   const shadowRef = useRef<HTMLDivElement>(null)
 
   const clerk = useClerk()
@@ -99,35 +101,46 @@ const SNTCComponent: React.FC<SNTCComponentProps> = ({
     if (
       cardRef.current === null ||
       downloadButtonRef.current === null ||
+      messageRef.current === null ||
+      homeButtonRef.current === null ||
       shadowRef.current === null
     ) {
       return
     }
 
-    // Remove shadow and hide download button
+    // Hide the buttons, message, and shadow
     const originalBoxShadow = shadowRef.current.style.boxShadow
     shadowRef.current.style.boxShadow = 'none'
     downloadButtonRef.current.style.display = 'none'
+    messageRef.current.style.display = 'none'
+    homeButtonRef.current.style.display = 'none'
 
     toPng(cardRef.current)
       .then((dataUrl) => {
         saveAs(dataUrl, 'card.png')
 
-        // Restore original shadow and show download button
+        // Restore the buttons, message, and shadow
         shadowRef.current.style.boxShadow = originalBoxShadow
         downloadButtonRef.current.style.display = 'block'
+        messageRef.current.style.display = 'block'
+        homeButtonRef.current.style.display = 'block'
       })
       .catch((err) => {
         console.error('Oops, something went wrong!', err)
 
-        // Restore original shadow and show download button in case of error
-        cardRef.current.style.boxShadow = originalBoxShadow
+        // Restore the buttons, message, and shadow in case of error
+        shadowRef.current.style.boxShadow = originalBoxShadow
         downloadButtonRef.current.style.display = 'block'
+        messageRef.current.style.display = 'block'
+        homeButtonRef.current.style.display = 'block'
       })
   }
 
   return (
     <div className='overflow-auto flex flex-col items-center p-5' ref={cardRef}>
+      <p ref={messageRef} className='text-white rounded mb-2'>
+        Download and share it on your story!!!!
+      </p>
       <div
         ref={shadowRef}
         className='bg-white rounded-3xl text-center flex flex-col justify-center items-center w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto'
@@ -173,16 +186,22 @@ const SNTCComponent: React.FC<SNTCComponentProps> = ({
           {content}
         </p>
       </div>
-      <button
-        ref={downloadButtonRef}
-        onClick={handleDownload}
-        className='mt-4 bg-purple-500 text-white px-4 py-2 rounded'
-      >
-        Download Card
-      </button>
-      <p className='bg-purple-500 text-white rounded'>
-        Download and share it on you story!!!!
-      </p>
+      <div className='flex justify-center mt-1'>
+        <button
+          ref={downloadButtonRef}
+          onClick={handleDownload}
+          className='bg-gradient-to-r mx-2 mt-2 from-pink-300 via-pink-200 to-orange-300 rounded-full p-3 shadow-lg hover:scale-110 transition-transform duration-300 ease-in-out hover:shadow-xl active:bg-white flex items-center justify-center w-15 h-15'
+        >
+          Download Card
+        </button>
+        <button
+          ref={homeButtonRef}
+          onClick={() => navigate('/')}
+          className='bg-gradient-to-r mx-2 mt-2 from-pink-300 via-pink-200 to-orange-300 rounded-full p-3 shadow-lg hover:scale-110 transition-transform duration-300 ease-in-out hover:shadow-xl active:bg-white flex items-center justify-center w-15 h-15'
+        >
+          Back to Home
+        </button>
+      </div>
     </div>
   )
 }
