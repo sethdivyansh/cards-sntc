@@ -91,10 +91,10 @@ const SNTCComponent: React.FC<SNTCComponentProps> = ({
   }, []);
 
   return (
-    <div>
+    <div className="overflow-auto max-h-screen p-4">
       <div
-        className="bg-white rounded-3xl text-center flex flex-col justify-center items-center w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-4"
-        style={{ boxShadow: "0 10px 20px rgba(128, 0, 128, 0.5)" }} // Uniform shadow all around
+        className="bg-white rounded-3xl text-center flex flex-col justify-center items-center w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto"
+        style={{ boxShadow: "0 10px 20px rgba(128, 0, 128, 0.5)" }}
       >
         <div className="flex justify-center w-full">
           <img
