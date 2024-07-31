@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo, RefObject,useEffect } from 'react'
+import React, { useState, useRef, useMemo, RefObject, useEffect } from 'react'
 import TinderCard from 'react-tinder-card'
 import CopsCard from './components/cops'
 import cops from './assets/cops.svg'
@@ -244,13 +244,15 @@ function App() {
             ))}
           </div>
 
-          {currentIndex === db.length - 1 && (
-            <div className='relative w-full flex justify-center z-50'>
-              <div className='text-white text-lg mt-4'>
-                Swipe the card to explore different clubs!
-              </div>
+          <div className={`relative w-full flex justify-center z-50`}>
+            <div
+              className={`text-${
+                currentIndex === db.length - 1 ? 'white' : 'transparent'
+              } text-lg mt-4`}
+            >
+              Swipe the card to explore different clubs!
             </div>
-          )}
+          </div>
 
           <div className='relative w-full flex justify-center z-50'>
             <button
