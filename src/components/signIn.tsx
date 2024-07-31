@@ -1,5 +1,6 @@
 import { SignInButton } from "@clerk/clerk-react";
-
+import ReactPlayer from "react-player";
+import rocket from '../../public/rocket.webm'
 export default function SignInPage() {
   return (
     <div className="grid min-h-screen auto-rows-min flex-col bg-[#0c0a09] p-16 md:flex md:flex-row md:p-48">
@@ -18,15 +19,16 @@ export default function SignInPage() {
           </button>
         </div>
       </div>
-      <div className="video grid">
-        <video
-          autoPlay
+      <div className="video w-full justify-self-center md:w-52">
+        <ReactPlayer
+          url={rocket}
+          playing
           muted
           loop
-          className="w-full justify-self-center md:w-52"
-        >
-          <source src="/rocket.webm" type="video/webm" />
-        </video>
+          width="100%"
+          height="auto"
+          className="justify-self-center md:w-52"
+        />
       </div>
       <button className="mt-8 h-12 w-full rounded-md bg-[#22c55e] text-xl font-medium hover:bg-[#22c55ee6] md:hidden">
         <SignInButton>
